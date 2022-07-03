@@ -137,6 +137,8 @@ export default ExportHalaman
   
 ![](./image/React%20App.png)
 
+![](./image/Event.jpeg)
+
 ## 2. React Component
 ---
 
