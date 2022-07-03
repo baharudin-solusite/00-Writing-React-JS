@@ -166,12 +166,87 @@ Type data pada component react itu cuma dua yaitu Prop dan State.Dari sisi progr
 
 **lalu apa bedanya function dan class pada component?**
 
-- Untuk sekarang ingat saja functional component tidak memiliki state, itu sebabnya barang ini biasa disebut stateless component.
-- Sedangkan class component bisa memiliki prop dan state.
+- Functional component tidak memiliki state, oleh karena itu disebut Stateless Component.
+- Sedangkan class component bisa memiliki prop (Properti) dan state disebut StateFul Component.
 
-**Pembahasan State & Props**
+### **Props Component**
 
+App.js
+```jsx
+import "./App.css";
+import Course from "./component/Course/Course";
+const App = () => {
+  return (
+    // JSX
+    <div className="App">
+      <header className="App-header">
 
+        <Course />
+
+      </header>
+    </div>
+  );
+};
+
+export default App;
+```
+CourseCard.jsx
+```js
+import React from 'react'
+
+// pemberian props pada parameter sebagai jalur sebuah data yang dikirim dari file lain
+// props berfungsi untuk mengoper sebuah data seperti (title,detail)
+const CourseCard = (props) => {
+    return (
+        <div style={{ display: "flex" }}>
+            <div>
+                <iframe width="400" 
+                height="200" src={`https://www.youtube.com/embed/${props.embedId}`} 
+                title="YouTube video player" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" />
+            </div>
+            <div style={{ textAlign: "left", marginLeft: "20px" }}>
+                {/*  */}
+                <h4>{props.title}</h4>
+                <p>{props.detail}</p>
+            </div>
+        </div>
+    )
+}
+
+export default CourseCard;
+
+```
+Course.js
+```jsx
+import React from 'react'
+import CourseCard from './CourseCard'
+function Course() {
+    return (
+        <div>
+            <h2>Course</h2>
+            <div style={{ display: "flex", padding: '50px' }}>
+                {/* Props adalah Properti */}
+                {/* props disini sebagai pengirim sebuah data */}
+                <CourseCard title="Warriors | Season 2020 Cinematic" 
+                detail="League of Legends (ft. 2WEI and Edda Hayes)" 
+                embedId="aR-KAldshAE" />
+
+                <CourseCard title="Cara deploy aplikasi NodeJS ke HEROKU dari 0 sampai berhasil" 
+                detail="Tutorial  NodeJS ke HEROKU"
+                embedId="WY6eVl8FzTg" />
+                {/* <CourseCard /> */}
+
+            </div>
+
+        </div>
+    )
+}
+
+export default Course;
+```
+### hasil Props
+![](./image/Props.jpeg)
 
 ## 3. React State
 ---
