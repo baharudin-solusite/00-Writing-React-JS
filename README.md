@@ -210,7 +210,7 @@ CourseCard.jsx
 import React from 'react'
 
 // pemberian props pada parameter sebagai jalur sebuah data yang dikirim dari file lain
-// props berfungsi untuk mengoper sebuah data seperti (title,detail)
+// props berfungsi untuk mengoper sebuah data 
 const CourseCard = (props) => {
     return (
         <div style={{ display: "flex" }}>
