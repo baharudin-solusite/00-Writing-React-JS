@@ -59,37 +59,51 @@ function App() {
       <header className="App-header">
         {/* import halaman */}
         <ExportHalaman />
+
         {/* url image */}
         <img width={200} src="https://rimbakita.com/wp-content/uploads/2019/01/burung-hantu.jpg" alt='Burung Hantu' />
+
         {/* local image */}
         <br />
         <img width={200} src={BurungHatu} alt='Burung Hantu' />
+
+
         {/* Penggunaan class pada React yaitu menggunakan ClassName */}
         <h3 className='nama'>Baharudin</h3>
+
         {/* Curly Braces in JSX */}
         <h2> {7 + 7} </h2>
+
         {/* Variabel harus dipanggil Terlebih dahulu */}
         <h4> {pulang} </h4>
         <h3> {perkalian} </h3>
         <p> {"surabaya".toUpperCase()} </p>
+
         {/* Event */}
         {/* Pembuatan Button secara inlane */}
         <button onClick={() => console.log("inlane Button")}>Inlane Button</button>
         <br />
         <button onClick={() => console.log("ayam goreng")}>tekan</button>
+
         {/* pembuattan button secara internal */}
         <br />
         <button onClick={handleClick}>Tes</button>
+
         {/* checkbox */}
         <br />
         <input type={"checkbox"} onChange={() => console.log("ayam")} />
+
         {/* input form */}
         <br />
         <input type={"text"} onChange={(event) => console.log(event.target.value)} />
+
+
         <br />
         {/* conditional */}
         {/* satu - satunya codisional yang bisa dipakai pada React Js Ternary operator */}
         {isLogin ? <p>sudah login</p> : <p>belum login</p>}
+
+        
         {/* maping menampilkan Array of object */}
         {data.map((item, index) => (
           <h1 key={index}>{item.orang}</h1>
