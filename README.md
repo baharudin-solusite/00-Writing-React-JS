@@ -377,8 +377,74 @@ export default Cartitem
 - Tampilan browser
   
 ![](./image/State%20Hooks.jpeg)
-## 4. React useEffect
----
+## 4. React useEffect (React JS Hooks)
+
+Hooks merupakan fitur baru di React 16.8. baru dikenalkan pada tahun 2018 Fitur ini memungkinkan Anda menggunakan state dan fitur React lainnya tanpa menuliskan sebuah kelas.
+ 
+![](./image/Hooks.jpg)
+
+Hooks yang seriang diggunakan, adalah useState dan useEffect. untuk materi hooks ini akan lebih fokus pada useEffect
+
+**Perbedaan class dan functional**
+class menggunakan state sedangkan functional menggunakan state hooks sekilas hasil yang dikeluarkannya sama tidak ada perbedaaan
+
+**kelebihan penggunaan hooks**
+- lebih rapi penggunaannya
+- lebih pendek 
+- mudah dimengerti
+
+**useEffect hooks**
+useEffect merupakan hooks yang bisa digunakan untuk menggunakan ***lifecycle*** pada functional component dengan mudah
+
+**Apa itu lifecycle**
+LifeCycle yaitu sebuah proses yang dilakukan component yang sedang berjalan 
+
+LifeCycle yang ada didalam hooks hanya mennggunakan useEffect yang menggabugkan 
+- Mounting
+- Updating
+- Unmouting
+
+**Cara Penggunaan useEffect usntuk menampilkan data Github**
+
+1. instal axios dengan format: **npm i axios**
+2. import axios dan useEffect
+3. siapkan data github
+4. berikut ini penggunaan useEffect pada react
+```js
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+function App() {
+  const [dataGithub,setDataGithub] = useState({});
+
+  // useeffect call api
+  let url = "https://github.com/baharudin-solusite";
+
+  useEffect(() => {
+    async function getAPI() {
+      const result = await axios.get(url);
+      console.log(result);
+      setDataGithub(result.data);
+    }
+
+    getAPI();
+  }, []);
+
+  console.log(dataGithub);
+
+  return (
+    <div className="App">
+      <h1>Use Effect</h1>
+
+      {/* useEffect data github  */}
+      <h1>Nama github: {dataGithub.name}</h1>
+      <h1>Username: {dataGithub.login}</h1>
+      <h1>id: {dataGithub.id}</h1>
+  );
+}
+
+export default App;
+```
 
 
 ## 5. Reach Router
