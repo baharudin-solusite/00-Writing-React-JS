@@ -133,6 +133,10 @@ function ExportHalaman() {
 export default ExportHalaman
 ```
 
+- Tampilan pada Browser
+  
+![](./image/React%20App.png)
+
 ## 2. React Component
 ---
 
