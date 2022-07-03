@@ -23,6 +23,8 @@ React JS adalah sebuah library JavaScript yang dibuat untuk membangun user inter
 ![](https://lh4.googleusercontent.com/6zWPjk-LerhmW5tC2tjyG_V5M2nw3BOvQ3kfTiHzIZC0uCsN50WtYO3iewCsw-yj_8ZwLe37_4t429PKVt2D14aVNZa4a2ZZguj80Ew5ZXn3nxWNceLKLoe0uyT9rRccp9Rg1I1i)
 
 ### **Cara kerja React JS**
+
+- index.js
 ```js
 // import file css
 import './App.css';
@@ -103,7 +105,7 @@ function App() {
         {/* satu - satunya codisional yang bisa dipakai pada React Js Ternary operator */}
         {isLogin ? <p>sudah login</p> : <p>belum login</p>}
 
-        
+
         {/* maping menampilkan Array of object */}
         {data.map((item, index) => (
           <h1 key={index}>{item.orang}</h1>
@@ -115,6 +117,20 @@ function App() {
 
 export default App;
 
+```
+- ExportHalaman.jsx
+```js
+import React from 'react'
+
+function ExportHalaman() {
+    return (
+        <div>
+            <h2>ExportHalaman</h2>
+        </div>
+    )
+}
+
+export default ExportHalaman
 ```
 
 ## 2. React Component
