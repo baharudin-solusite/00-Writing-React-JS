@@ -14,7 +14,7 @@ React JS adalah sebuah library JavaScript yang dibuat untuk membangun user inter
 **Bagaiman langkah-langkah ingin menggunakan React JS ?**
 1. Pertama diwajibkan menginstal [note.js](https://nodejs.org/en/) terlebih dahulu.
 2. Buatlah folder baru untuk meletakan file react Js nantinya.
-3. buka CMD Ketik format untuk menginstall react: **npm install -g create-react-app**
+3. buka CMD Ketik format untuk menginstall react: **npm install -g create-react-app nama-folder**
 4. Untuk mengecek kesuksesan proses instalasinya, Anda bisa cek versi reactnya dengan mengetik:
 **create-react-app –version** 
 5. lalu ketik **cd nama-folder** lalu jalankan react js dengan format **npm start**
