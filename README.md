@@ -159,15 +159,30 @@ Dalam pembuatan folder,file,dan function component harus menggunakan huruf besar
 
 ![](./image/penulisanComponent.jpeg)
 
+
+### **Stateful dan Stateless Component**
+
+
+**Stateless Component**
+
+Web atau aplikasi yang tidak membutuhkan perubahan state/ keadaan seperti pengunaan  table dan button.
+
+**Stateful Component**
+
+web atau aplikasi yang membutuhkan perubahan state/keaadaan seperti benner dan form
+
+
 ### **State & Props**
 Ada 2 unsur penting dalam component yaitu UI (User Interface) & Data.
 
-Type data pada component react itu cuma dua yaitu Prop dan State.Dari sisi programming component react itu dibuat dengan function atau class
+Type data pada component react itu cuma dua yaitu **Prop dan State**.Dari sisi programming component react itu dibuat dengan function atau class
 
 **lalu apa bedanya function dan class pada component?**
 
-- Functional component tidak memiliki state, oleh karena itu disebut Stateless Component.
-- Sedangkan class component bisa memiliki prop (Properti) dan state disebut StateFul Component.
+- Untuk sekarang ingat saja functional component tidak memiliki state, itu sebabnya biasa disebut stateless component.
+- Sedangkan class component bisa memiliki prop dan state.
+
+
 
 ### **Props Component**
 
@@ -180,7 +195,7 @@ const App = () => {
     // JSX
     <div className="App">
       <header className="App-header">
-
+        // data dipanggil
         <Course />
 
       </header>
@@ -206,7 +221,6 @@ const CourseCard = (props) => {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" />
             </div>
             <div style={{ textAlign: "left", marginLeft: "20px" }}>
-                {/*  */}
                 <h4>{props.title}</h4>
                 <p>{props.detail}</p>
             </div>
@@ -250,9 +264,121 @@ export default Course;
 
 ## 3. React State
 ---
+state adalah data yang dimiliki sebuah component dan data tersebut dapat berubah atau dapat di update kembali. 
 
+Data apa saja yang berubah pada sebuah web atau aplikasi?
 
+data yang selalu berubah yaitu benner,input form, card produk, contact dll, yang bersifat data 
+
+### **useState**
+useState, adalah fitur dari React untuk membuat sebuah state pada functional component
+
+**cara sederhana useState Hooks**
+1. import useState dari react 
+   ```js
+   import {useState} from "react";
+   ```
+2. menuliskan userState hooks
+   ```js
+    const [nama, setNama] = useState("Baharudin");
+   ```
+3. memanggil data useState
+   ```js
+   <h3>{nama}<h3>
+   ```
+**Membuat Menu keranjang nama produk dan Counter**
+
+- App.js
+```js
+// import useState
+import { useState } from 'react';
+// import Cartitem
+import Cartitem from './component/Cartitem';
+function App() {
+  // menuliskan useState hooks
+  // fungsi penulisan (setNama) untuk mengubah data (nama)
+  const [nama, setNama] = useState("Baharudin")
+  // membuat data menjadi array agar mudah dibaca
+  const [hewan] = useState([
+    "Monyet", "Srigala", "Kura-Kura", "Hiu", "kucing"
+  ])
+
+  return (
+    <div>
+      {/* memanggil useState */}
+      {/* bila di tekan akan berubah namanya */}
+      <h2 onClick={() => setNama("Fahrul")}>{nama}</h2>
+
+      {/* loping data dengan map colback */}
+      {hewan.map((item, index) => (
+        <Cartitem key={index} hewan={item} />
+      ))}
+
+      {/* perbanyak sebuah data manual */}
+      <Cartitem hewan="Monyet" />
+      <Cartitem hewan="Srigala" />
+      <Cartitem hewan="Kura-Kura" />
+    </div>
+  );
+}
+
+export default App;
+
+```
+- Couter.js
+```js
+import React from 'react'
+import { useState } from 'react';
+
+function Counter() {
+    /* membuat sebuah state */
+    const [count, setCount] = useState(0)
+
+    const decrement = () => {
+        if (count > 0) {
+            setCount(count - 1)
+        }
+    }
+
+    return (
+
+        <div>
+            {/* membuat sebuah state */}
+            {/* membuat sebuah couter bagaimana nantinya nilai yang dihasilkan tidak minus */}
+            <button onClick={decrement}>-</button>
+            <span> {count} </span>
+            <button onClick={() => setCount(count + 1)}>+</button>
+        </div>
+    )
+}
+
+export default Counter
+```
+
+- Cartitem.js
+```js
+import React from 'react'
+import Counter from './Counter'
+function Cartitem(props) {
+    return (
+
+        /* membuat item cart */
+        <div style={{ display: "flex" }}>
+            <span>{props.hewan}</span>
+            {/* Jumlah */}
+            <Counter />
+        </div>
+    )
+}
+
+export default Cartitem
+
+```
+
+![](./image/State%20Hooks.jpeg)
 ## 4. React useEffect
 ---
+
+
 ## 5. Reach Router
 ---
