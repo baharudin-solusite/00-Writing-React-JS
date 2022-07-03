@@ -374,7 +374,8 @@ function Cartitem(props) {
 export default Cartitem
 
 ```
-
+- Tampilan browser
+  
 ![](./image/State%20Hooks.jpeg)
 ## 4. React useEffect
 ---
