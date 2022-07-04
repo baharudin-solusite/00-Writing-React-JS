@@ -394,31 +394,39 @@ class menggunakan state sedangkan functional menggunakan state hooks sekilas has
 - mudah dimengerti
 
 **useEffect hooks**
+
 useEffect merupakan hooks yang bisa digunakan untuk menggunakan ***lifecycle*** pada functional component dengan mudah
 
 **Apa itu lifecycle**
+
 LifeCycle yaitu sebuah proses yang dilakukan component yang sedang berjalan 
 
 LifeCycle yang ada didalam hooks hanya mennggunakan useEffect yang menggabugkan 
 - Mounting
 - Updating
 - Unmouting
+  
+![](https://media.istockphoto.com/vectors/vector-illustration-of-life-cycle-of-butterfly-diagram-vector-id1175655603?k=20&m=1175655603&s=612x612&w=0&h=NONZ-mAc3UoreyUHa8-DuKmN34f4l1jpRYClVApu2gU=)
 
-**Cara Penggunaan useEffect usntuk menampilkan data Github**
+
+**Cara Penggunaan useEffect di react untuk menampilkan data Github**
 
 1. instal axios dengan format: **npm i axios**
 2. import axios dan useEffect
 3. siapkan data github
 4. berikut ini penggunaan useEffect pada react
+
+
+- App.js
 ```js
 import { useEffect, useState } from "react";
 import axios from "axios";
 
 function App() {
-  const [dataGithub,setDataGithub] = useState({});
+  const [dataGithub, setDataGithub] = useState({});
 
   // useeffect call api
-  let url = "https://github.com/baharudin-solusite";
+  let url = "https://api.github.com/users/baharudin-solusite";
 
   useEffect(() => {
     async function getAPI() {
@@ -433,19 +441,117 @@ function App() {
   console.log(dataGithub);
 
   return (
+
+
     <div className="App">
       <h1>Use Effect</h1>
-
       {/* useEffect data github  */}
       <h1>Nama github: {dataGithub.name}</h1>
       <h1>Username: {dataGithub.login}</h1>
       <h1>id: {dataGithub.id}</h1>
+    </div>
   );
 }
 
 export default App;
+
 ```
+- hasil broser
+- 
+![](./image/useEffect.jpeg)
 
 
 ## 5. Reach Router
 ---
+
+**langgkah2 penggunaan react Router Dom**
+
+1.  buat project Reactjs terlebi dahulu react terlebih dahulu
+2.  masuk ke folder project buka terminal lalu tekan format: **npm i react-router-dom**
+3.  lalu ubah App.js seperti dibawah ini
+
+App.js
+```js
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
+
+export default function BasicExample() {
+  return (
+    <Router>
+      <div>
+      // navbar link yang nantinya akan digunakan 
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+          <li>
+            <Link to="/dashboard">Dashboard</Link>
+          </li>
+        </ul>
+
+        <hr />
+
+        {/*
+         memiliki banyak rute, tetapi Anda hanya menginginkan satu
+          dari mereka untuk dirender pada suatu waktu
+        */}
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/dashboard">
+            <Dashboard />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+  );
+}
+
+// halaman yang akan muncul
+// in your app.
+
+function Home() {
+  return (
+    <div>
+      <h2>Home</h2>
+    </div>
+  );
+}
+
+function About() {
+  return (
+    <div>
+      <h2>About</h2>
+    </div>
+  );
+}
+
+function Dashboard() {
+  return (
+    <div>
+      <h2>Dashboard</h2>
+    </div>
+  );
+}
+```
+
+- hasil browser
+
+![](https://1.bp.blogspot.com/-OuLNdyqZgEM/YCfMo1VA_kI/AAAAAAAABIA/vf-mA4aFKowqyQL8DN4A2uQSicP_g91pwCLcBGAsYHQ/s320/Screen%2BShot%2B2021-02-13%2Bat%2B19.56.14.png)
+
+**apa fungsinya react router**
+
+
