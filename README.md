@@ -554,4 +554,230 @@ function Dashboard() {
 
 **apa fungsinya react router**
 
+# **Writing minggu ke 2 React JS** 
+
+1. React Redux
+2. React Redux Thunk
+3. React Context
+4. React Bootstrap
+5. Reach Testing
+  
+## React Redux
+- Redux adalah salah satu state management 
+
+**Kelebihan React Redux**
+- sebagai data Base
+- bussiness logic
+- Mudah digunakan dan dipelajari
+- Memanajemen state
+
+**Langkah membuat redux**
+- buat folder react
+- instal redux, **npm install react-redux axios @reduxjs/toolkit** 
+- membuat folder Store dan component dimana store memiliki file index.js
+  
+  ![](./image-lanjutan/redux2.jpeg)
+
+berikut ini contoh penggunaan redux
+
+
+BookSlice.js
+```js
+import { createSlice } from "@reduxjs/toolkit";
+
+const initialState = {
+  totalBooks: 0,
+};
+
+const bookSlice = createSlice({
+  name: "book",
+  initialState,
+
+
+  reducers: {
+   
+    kurang: (state) => {
+      state.totalBooks--;
+    },
+    tambah: (state) => {
+      state.totalBooks++;
+    },
+
+
+  },
+});
+
+export default bookSlice.reducer;
+export const { kurang, tambah } = bookSlice.actions;
+```
+BooksView.js
+```js
+import { useSelector, useDispatch } from "react-redux";
+import { kurang, tambah } from "./BooksSlice";
+
+const BooksView = () => {
+  const dispatch = useDispatch();
+
+  // Mengambil dari store
+  const totalBooksRedux = useSelector((state) => state.book.totalBooks);
+
+  console.log("total", totalBooksRedux);
+
+  return (
+    <div>
+      <h1>BooksView</h1>
+      <h1>Total Books: {totalBooksRedux}</h1>
+
+      <button onClick={() => dispatch(kurang())}>kurang</button>
+      <button onClick={() => dispatch(tambah())}>tambah</button>
+    </div>
+  );
+};
+
+export default BooksView;
+```
+Store/index.js
+```js
+import BooksView from "./Components/Books/BooksView"
+
+function App() {
+  return (
+    <div>
+
+      <BooksView />
+
+    </div>
+  );
+}
+export default App;
+```
+
+index.js
+```js
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+
+// redux
+import { Provider } from "react-redux";
+import store from "./store";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </React.StrictMode>
+);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
+```
+
+## React Redux Thunk
+
+memungkinkan Anda memanggil pembuat tindakan yang mengembalikan fungsi
+
+**cara penggunaannya**
+
+```js
+import axios from "axios";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+
+const initialState = {
+  loading: false,
+  users: [],
+  error: "",
+};
+
+export const fetchUsers = createAsyncThunk("user/fetchUsers", () => {
+  return axios
+    .get("https://jsonplaceholder.typicode.com/users")
+    .then((response) => response.data);
+});
+
+const userSlice = createSlice({
+  name: "user",
+  initialState,
+  extraReducers: (item) => {
+    // proses request data
+    item.addCase(fetchUsers.pending, (state) => {
+      state.loading = true;
+    });
+    // ketika data berhasil didapatkan
+    item.addCase(fetchUsers.fulfilled, (state, action) => {
+      state.loading = false;
+      state.users = action.payload;
+      state.error = "";
+    });
+    item.addCase(fetchUsers.rejected, (state, action) => {
+      state.loading = false;
+      state.users = [];
+      state.error = action.error;
+    });
+  },
+});
+
+export default userSlice.reducer;
+
+```
+
+
+
+## React Context
+
+Konteks React memungkinkan kita untuk meneruskan dan menggunakan (mengkonsumsi) data dalam komponen apa pun yang kita butuhkan di aplikasi React.
+
+**kelebihan react context**
+- lebih simpel dan mudah penggunaanya dari pada redux
+- hanya perlu mengimpor dan export data dari reactnya langsung
+- tidak perlu menginstall tool/data apapun
+
+```js
+// import yang diperlukan
+import { useState, createContext, useEffect } from "react";
+import axios from "axios";
+
+// buat dulu setup context dengan createContext
+export const UserContext = createContext();
+
+// komponen provider untuk menyediakan si data context
+const UserContextProvider = (props) => {
+  const [user] = useState({
+    // data
+    name: "Baharudin",
+    batch: "Joyfull Jasper",
+  });
+  const [userData, setUserData] = useState([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      const result = await axios.get(
+        "https://jsonplaceholder.typicode.com/users"
+      );
+      setUserData(result.data);
+    };
+
+    getData();
+    console.log(userData);
+  }, []);
+
+  return (
+    <UserContext.Provider value={{ user, userData }}>
+      {props.children}
+    </UserContext.Provider>
+  );
+};
+export default UserContextProvider;
+
+```
+
+## Reach Testing
+
+
 
