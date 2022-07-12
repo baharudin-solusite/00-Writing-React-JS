@@ -559,8 +559,7 @@ function Dashboard() {
 1. React Redux
 2. React Redux Thunk
 3. React Context
-4. React Bootstrap
-5. Reach Testing
+4. Reach Testing
   
 ## React Redux
 - Redux adalah salah satu state management 
@@ -778,6 +777,14 @@ export default UserContextProvider;
 ```
 
 ## Reach Testing
+adalah perintah untuk mendeteksi eror/trobel pada sebuah codingan
+ cara menjalankan dengan terminal ketik format **npm run test**
+
+
+![](/image-lanjutan/testing.jpeg)
+
+
+
 
 
 
